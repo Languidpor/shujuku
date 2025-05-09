@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1205</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h2>表设计之关联关系</h2>
+<h3>一对一</h3>
+<ul>
+<li>什么是一对一：有AB两张表，其中A表的一条数据对应B表的一条数据，同时B表的一条数据也对应A表的一条数据</li>
+<li>应用场景：用户表和用户信息扩展表，商品表和商品信息扩展表</li>
+<li>外键：表中用于简历关系的字段称为外键，一张表可能有多个外键，但只会有一个主键</li>
+<li>如何建立关系：从表中添加外键指向主表的主键</li>
+<li>创建表保存以下数据：表名（user）和表名（userinfo）</li>
+<li>user: 1 悟空 1000;2 八戒 2000;3 沙僧 1500；4 唐僧 35</li>
+<li>userinfo:弼马温 金箍棒 孙行者;天蓬元帅 九齿钉耙 悟能;卷帘大将 降魔杖 悟净;佛前替身 禅杖 玉帝哥哥</li>
+</ul>
+<p>```mysql</p>
+<pre><code>create table user(
+id int primary key auto_increment,
+name varchar(50),
+age int
+);
+
+create table userinfo(
+id int primary key auto_increment,
+nikename varchar(50),
+tool varchar(50),
+job varchar(50),
+uid int
+);
+insert into user values(null,'悟空',1000),(null,'八戒',2000),(null,'沙僧',1500),(null,'唐僧',35);
+
+insert into userinfo values
+(1,'孙行者','金箍棒','弼马温',1),(2,'悟能','九齿钉耙','天蓬元帅',2),
+(3,'悟净','降魔杖','卷帘大将',3),(4,'御弟哥哥','禅杖','佛前替身',4);
+</code></pre>
+
+<p>```</p>
+<ul>
+<li>查询每个用户名对应的昵称</li>
+<li>select u.name,ui.nikename from user u join userinfo ui on u.id=ui.uid;</li>
+<li>查询悟净的用户名</li>
+<li>select u.name,ui.nikename from user u join userinfo ui on u.id=ui.uid where ui.nikename='悟净';</li>
+<li>查询年龄是1500岁的成员的兵器</li>
+<li>select u.age,ui.tool from user u join userinfo ui on u.id=ui.uid where u.age=1500;</li>
+<li>查询是否存在名字：悟空，昵称：孙行者的成员</li>
+<li>select count(*) from user u join userinfo ui on u.id=ui.uid where u.name='悟空' and ui.nikename='孙行者';</li>
+</ul>
+<h3>一对多</h3>
+<ul>
+<li>什么是一对多：有AB两张表，A表中的一条数据对应B表中的多条数据，同时B表中的一条数据对应A表中的一条</li>
+<li>应用场景：用户表和部门表，商品表和分类表</li>
+<li>如何建立关系：在多的一段添加外键指向另外一张表</li>
+</ul>
+<h3>多对多</h3>
+<ul>
+<li>什么是多对多：有AB两张表，A表中的一条数据对应B表中的多条数据，B表中的一条数据也对应这A表中的多条数据</li>
+<li>应用场景：老师和学生</li>
+<li>如何建立关系：通过第三张关系表保存两张表的关系</li>
+</ul>
+<p>```</p>
+<pre><code>create table teacher(
+id int primary key auto_increment,
+name varchar(50)
+);
+create table student(
+id int primary key auto_increment,
+name varchar(50)
+);
+create table t_s(
+id int primary key auto_increment,
+t_id int,
+s_id int
+);  
+insert into teacher values(1,&quot;张三&quot;),(2,&quot;李四&quot;),(3,&quot;王五&quot;);
+insert into teacher values(4,&quot;赵六&quot;);
+insert into student values(1,&quot;jack&quot;),(2,&quot;rose&quot;),(3,&quot;tom&quot;);
+insert into student values(4,&quot;apple&quot;);
+insert into t_s values(1,1,1),(2,1,2),(3,2,1),(4,2,3),(5,3,1);
+中文插入不正确：set names gbk
+电脑有自己的编码，windows系统一般编码就是国标：gbk
+数据库默认设置编码是utf8
+- 查询每个学生姓名和对应的老师姓名
+select t.name 老师,s.name 学生 
+from student s 
+left join t_s ts 
+on s.id = ts.s_id
+left join teacher t
+on ts.t_id = t.id;
+- 查询李四的学生都有谁
+select s.name 学生 
+from student s 
+join t_s ts 
+on s.id = ts.s_id
+join teacher t
+on ts.t_id = t.id where t.name='钱七';
+- 查询rose的老师都有谁
+select s.name 学生,t.name 老师 
+from student s 
+join t_s ts 
+on s.id = ts.s_id
+join teacher t
+on ts.t_id = t.id where s.name='rose';
+</code></pre>
+
+<p>```</p>
+<h3>自关联</h3>
+<pre><code>在当前表中添加外键，外键的值指向当前表的主键，这种关联方式成为自关联。
+查询king是谁的领导
+select e.ename 员工
+from emp e
+left join emp m
+on e.mgr = m.empno
+where m.ename='king';
+查询每个员工的名字和领导的名字
+select e.ename 员工,m.ename 领导
+from emp e
+left join emp m
+on e.mgr = m.empno;
+查询MARTIN的领导的名字
+select m.ename 领导
+from emp e
+left join emp m
+on e.mgr = m.empno
+where e.ename='MARTIN';
+查询MARTIN的领导的名字-子查询
+select ename from emp where empno = 
+(select mgr from emp where ename='MARTIN');
+</code></pre>
+
+<h3>表权限管理</h3>
+<ul>
+<li>实现权限管理功能需要准备三张主表和两张关系表</li>
+</ul>
+<p>```</p>
+<pre><code>create table users(id int,name varchar(30));
+create table role(id int,name varchar(30));
+create table module(id int,name varchar(40));
+
+insert into users values(1,'唐僧'),(2,'悟空'),(3,'悟能'),(4,'悟净'),(5,'白龙');
+insert into role values(1,'专员'),(2,'助理'),(3,'经理');
+insert into module values(1,'查看信息'),(2,'删除信息'),(3,'插入信息'),(4,'修改信息');
+
+create table ur(id int,uid int,rid int);
+create table rm(id int,rid int,mid int);
+
+insert into ur values
+(1,1,1),(2,1,3),(3,2,1),(4,2,2),
+(5,3,1),(6,3,2),(7,4,2),(8,5,1);
+
+insert into rm values
+(1,1,1),(2,2,1),(3,2,2),(4,2,3),(5,3,1),
+(6,3,2),(7,3,3),(8,3,4);
+
+查看每个员工都有哪些角色
+查看每个员工都有哪些权限
+查看悟空的权限有哪些
+查看经理有哪些权限
+查看有插入信息的权限有哪些员工
+</code></pre>
+
+<p>```</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -1,0 +1,139 @@
+数据库：database
+数据库管理系统:database system
+常见的数据库管理系统（简称数据库）：mysql,oracle,redis,mongodb,...
+主要讲mysql
+mysql中创建库，创建表，删除库，删除表，修改库，修改表
+       插入数据，查看数据，修改数据，删除数据
+
+主键约束 primary key
+主键：用于表述数据唯一性的字段称为主键
+约束：是给表字段添加的限制条件
+主键约束：限制主键字段值不能重复且非空（不能为空）
+create table t1(id int primary key,name varchar(100));
+insert into t1 values(1,'jack');
+mysql> insert into t1 values(1,'rouse');-->主键不能重复
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+
+mysql> insert into t1 values(null,'rouse');-->主键不能为null
+ERROR 1048 (23000): Column 'id' cannot be null
+
+mysql> insert into t1(name) values('rouse');-->主键不能为空
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
+
+自增：auto_increment
+主键约束字段数据不需要人为填写，会自动生成
+注意：自增的只能是int类型的主键约束字段数据
+create table t2(id int primary key auto_increment,name varchar(100));
+insert into t2 values(null,'jack');
+insert into t2 values(null,'rouse');
+mysql> insert into t2 values(1,'jack');
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+
+
+自增结论：
+1.默认从1开始
+2.每次增加一条数据
+3.自增字段可以手动赋值，且可以赋值不存在的任何数字
+4.自增字段从最大的数据做+1操作
+
+注释 comment
+创建表声明字段的时候给字段添加的介绍
+create table t3(
+id int primary key auto_increment comment '主键',
+name varchar(100) comment '姓名',
+age int comment '年龄'
+);
+
+数据冗余：如果表设计不合理，保存大量数据的同时可能随之会出现大量
+重复数据，这些重复数据的现象称之为数据冗余，通过拆分表的形式解决
+冗余问题
+
+1.集团总部下面的市场部下的市场A部的员工刘备，工资8000，性别男，年龄25
+2.教学部下java教学部的员工张老师，工资10000，性别女，年龄18
+方案1：
+create table emp1(
+id int primary key auto_increment,
+deptname varchar(100),
+deptname1 varchar(100),
+deptname2 varchar(100),
+name varchar(100),
+salary int,
+gender varchar(3),
+age int
+);
+insert into emp1 values(null,'集团总部','市场部','市场A部','刘备',8000,'男',25);
+insert into emp1 values(null,'集团总部','市场部','市场A部','刘备2',8000,'男',25);
+insert into emp1 values(null,'集团总部','市场部','市场A部','刘备3',8000,'男',25);
+insert into emp1 values(null,'集团总部','市场部','市场A部','刘备4',8000,'男',25);
+insert into emp1 values(null,'集团总部','市场部','市场A部','刘备5',8000,'男',25);
+......
+insert into emp1 values(null,'教学部','java教学部',null,'张老师',10000,'女',18);
+insert into emp1 values(null,'教学部','java教学部',null,'张老师2',10000,'女',18);
+insert into emp1 values(null,'教学部','java教学部',null,'张老师3',10000,'女',18);
+insert into emp1 values(null,'教学部','java教学部',null,'张老师4',10000,'女',18);
+......
+
+性别尽量不要使用sex,使用gender即可
+
+方案2：拆分表
+1.集团总部下面的市场部下的市场A部的员工刘备，工资8000，性别男，年龄25
+2.教学部下java教学部的员工张老师，工资10000，性别女，年龄18
+创建员工表：
+create table emp2(
+id int primary key auto_increment,
+name varchar(100),
+salary int,
+gender varchar(3),
+age int,
+dno int
+);
+创建部门表：
+create table dept2(
+dno int primary key,
+dname varchar(100)
+);
+insert into dept2 values(1001,'集团总部'),(1002,'市场部'),
+(1003,'市场A部'),(1004,'教学部'),(1005,'java教学部');
+insert into emp2 values(null,'刘备',8000,'男',25,1003),
+(null,'张老师',10000,'女',18,1005);
+
+方案3：
+部门表
+部门号 部门名称 上级部门号
+1001   集团总部   null
+1002   市场部     1001
+1003   市场A部    1002
+1004   教学部     null
+1005   java教学部 1004
+create table dept3(
+dno int primary key,
+dname varchar(100),
+parentdno int
+);
+insert into dept3 values(1001,'集团总部',null),(1002,'市场部',1001),
+(1003,'市场A部',1002),(1004,'教学部',null),(1005,'java教学部',1004);
+
+
+
+
+1 张三    19  6000  行政经理   1001  行政部  上海浦东  
+2 李四    20  7000  行政助理   1001  行政部  上海浦东  
+3 王五    21  8000  销售经理   1002  销售部  北京西单  
+4 赵六    22  6500  销售助理   1002  销售部  北京西单
+5 钱七    21  6800  人事经理   1003  人事部  深圳大浦
+6 孙八    20  7000  招聘专员   1003  人事部  深圳大浦
+
+----》出现大量数据的重复
+
+第一张表：
+1 张三    19  6000  行政经理   1001  
+2 李四    20  7000  行政助理   1001   
+3 王五    21  8000  销售经理   1002  
+4 赵六    22  6500  销售助理   1002  
+5 钱七    21  6800  人事经理   1003  
+6 孙八    20  7000  招聘专员   1003  
+
+第二张表：
+1001  行政部  上海浦东  
+1002  销售部  北京西单  
+1003  人事部  深圳大浦

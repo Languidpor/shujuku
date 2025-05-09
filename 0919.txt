@@ -1,0 +1,166 @@
+1.数据库
+2.数据库管理系统
+  mysql(数据库)
+3.mysql是一个开源的数据库管理系统
+4.mysql的安装
+5.mysql的使用
+6.mysql的启动
+6.1 cmd:mysql -uroot -p
+6.2 windows+r : mysql -> 再输入密码
+7.创建库(创建文件夹)
+create database 库名;
+create database 库名 charset=utf8;
+8.删除库
+drop database 库名;
+9.使用库(在创建表之前必须确认好是使用哪个库)
+use 库名;
+10.创建表(创建文件)
+create table 表名(字段1 字段1类型,字段2 字段2类型,.....);
+11.查看当前库下面的所有表
+show tables;
+12.查看表详情
+show create table 表名;
+13.创建表时指定字符集和引擎
+create table 表名(
+字段1 字段1类型,
+字段2 字段2类型,
+.....
+)charset=gbk engine=myisam;
+14.字符集
+字符存储在计算机中的形态
+常见的字符集：gbk（国标），utf8（国际标准）
+15.引擎：规定用户可以对该表进行哪些操作
+15.1 innodb:支持数据库的高级操作：外键，事务等
+15.2 myisam:只支持基础的增删改查操作
+16.查看表字段
+desc 表名;
+17.删除表
+drop table 表名;
+18.修改表相关
+修改表名，插入字段，....
+
+数据操作
+1.插入数据
+create table emp(id int,name varchar(100),age int,sal int);
+全表插入数据：insert into 表名 values(字段1数据,字段2数据,字段3数据,.....);
+insert into emp values(1,'御弟',35,10000);
+insert into emp values(5,'小白龙',670,5000);
+
+指定字段插入数据:insert into emp(字段1,字段2,字段3,...) values(字段1数据,字段2数据,字段3数据,...);
+insert into emp(id,name,age) values(2,'悟空',550);
+
+批量插入数据:insert into 表名 values(字段1数据,字段2数据,字段3数据,.....),(字段1数据,字段2数据,字段3数据,.....);
+insert into emp values(3,'八戒',1200,9000),(4,'悟净',900,8000);
+
+2.查看数据
+查询全部字段信息
+查询所有员工信息：select * from emp;
+
+查看部分字段数据
+查询所有员工的姓名和年龄：select name,age from emp;
+
+条件查询
+查询年龄在900岁以下（包含900）的所有员工信息：
+select * from emp where age<=900;
+查询年龄在900岁以下（包含900）的所有员工姓名和工资：
+select name,sal from emp where age<=900;
+
+3.修改数据
+修改唐僧工资为12000
+update emp set sal=12000 where name='御弟';
+
+修改500岁以上的员工工资为1000
+update emp set sal=1000 where age>500;
+
+修改id为3的名字为悟能，年龄为1212，工资为11111
+update emp set name='悟能',age=1212,sal=1111 where id=3;
+
+修改工资为null的员工工资为800
+update emp set sal=800 where sal is null;
+
+4.删除数据
+删除id=1的员工
+delete from emp where id=1;
+
+删除年龄在600岁以下的员工
+delete from emp where age<600;
+
+删除全部员工
+delete from emp;
+
+练习：
+1.创建hero表，如果存在则先删除再创建，id,name,money，type(状态)
+2.插入一下数据
+  1 诸葛亮 法师 18888
+  2 悟空   打野 18888
+  3 小乔   法师 6888
+  4 黄忠   射手 8888
+  5 刘备   战士 6888
+3.修改所有18888为28888
+4.修改所有打野为刺客
+5.删除价格为6888的英雄
+6.修改悟空为八戒
+7.删除id为1,2,3的英雄
+8.修改所有英雄的状态为死亡
+9.删除所有数据
+10.删除表
+
+练习：
+1.创建数据库newdb并使用，里面创建员工表temp,只有name字段，引擎为myisam,字符集为gbk
+create database newdb charset=gbk;
+create table temp(name varchar(100))charset=gbk engine=myisam;
+2.修改表名为emp
+rename table temp to emp;
+3.修改引擎为innodb,字符集为utf8
+alter table emp engine=innodb charset=utf8;
+4.添加部门编号字段deptno在最后面
+alter table emp add deptno int; 
+5.添加员工编号字段empno在最前面
+alter table emp add empno int first;
+6.添加工资salary字段在name的后面
+alter table emp add salart int after name;
+7.修改salary字段名为sal,把sal字段放在empno后面
+alter table emp change salary sal int;
+alter table emp modify sal int after empno;
+8.删除sal字段
+alter table emp drop sal;
+9.删除表
+drop table emp;
+10.删除数据库newdb
+drop database newdb;
+
+
+中 国  ---->  存储到计算机中
+1.计算机不识别除了0和1之外的所有数据
+2.需要将中国转换为0和1
+3.字符集不同，转换的方式不同
+4.以gbk为例，将中国转换为0和1
+5.再将中国（两个字符）转换为0和1之前需要先将字符转换为字符
+6.gbk中:一个中文字符占两个字节，一个英文字符占一个字节
+  utf8中：一个中文字符占三个字节，一个英文字符占一个字节
+7.一个字节由八位二进制表示
+8.中---》10100101 00011101 
+9.国---》00011101 10110101
+10.如此中国在计算机中存储为 10100101 00011101 00011101 10110101
+11.如果读取这段字节用utf8的方式，则为 10100101 00011101 00011101 + 10110101
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
